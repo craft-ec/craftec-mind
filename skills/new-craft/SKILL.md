@@ -5,7 +5,7 @@ user-invocable: true
 disable-model-invocation: true
 trigger: "spin up a new craft", "create a new project"
 layer: work
-allowed-tools: Read, Grep, Glob, Bash, Write, Task
+allowed-tools: Read, Grep, Glob, Bash, Write, Edit
 ---
 
 # new-craft — New Craft Project Scaffolding

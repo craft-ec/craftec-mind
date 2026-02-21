@@ -5,7 +5,7 @@ user-invocable: true
 disable-model-invocation: true
 trigger: "find all gaps", "audit craftnet", "what's missing", "wire up everything"
 layer: work
-allowed-tools: Read, Grep, Glob, Bash, Write, Task
+allowed-tools: Read, Grep, Glob, Bash, Write, Edit
 ---
 
 # audit — Comprehensive Audit Workflow
@@ -47,8 +47,8 @@ Each worker checks:
 type: audit
 status: in-progress
 scope: <scope>
-created: <today's date>
-updated: <today's date>
+created: <ISO 8601 timestamp>
+updated: <ISO 8601 timestamp>
 tags: [audit, <scope>]
 ---
 # Audit Gaps — <scope>
@@ -107,6 +107,10 @@ As gaps are fixed, update `.claude/features/<craft>.md`:
 5. **Re-audit** — always do a second pass; first pass never catches everything
 6. **Use protocols** — design-check and integration-check protocols, not ad-hoc checking
 
+### Extract TODOs
+
+After writing the audit-gaps file, extract all **Critical** and **High** items to `.claude/todos.md` using the `todo-track` format. This ensures action items are tracked centrally and not buried in the audit file.
+
 ## Integration
 
 - **design-check**: Workers use design-check protocol for spec compliance
@@ -116,3 +120,4 @@ As gaps are fixed, update `.claude/features/<craft>.md`:
 - **debug-log**: Fallback for persistent verification failures
 - **commit-guard**: One commit per fixed batch
 - **feature-track**: Updates feature trackers as gaps are resolved
+- **todo-track**: Receives Critical/High items from audit findings

@@ -5,7 +5,7 @@ user-invocable: true
 disable-model-invocation: true
 trigger: "add an IPC method", "wire up get_status", "add a new RPC method"
 layer: work
-allowed-tools: Read, Grep, Glob, Write
+allowed-tools: Read, Grep, Glob, Write, Edit
 ---
 
 # wire-ipc — IPC Method Wiring

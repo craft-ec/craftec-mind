@@ -41,7 +41,7 @@ category: <category>
 craft: <craft-name or "all">
 source: <file path where this was extracted from>
 tags: [pattern, <category>, <craft>]
-created: <today's date>
+created: <ISO 8601 timestamp>
 ---
 ## <Pattern Name>
 **Applies to**: <crate types where this pattern is used>

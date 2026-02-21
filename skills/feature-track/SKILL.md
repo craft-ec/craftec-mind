@@ -29,8 +29,8 @@ One file per craft at `.claude/features/<craft>.md`
 craft: <craft-name>
 type: feature
 status: not-started
-created: <today's date>
-updated: <today's date>
+created: <ISO 8601 timestamp>
+updated: <ISO 8601 timestamp>
 tags: [<craft>, feature-tracker]
 ---
 # <Craft> Feature Tracker
@@ -57,7 +57,7 @@ tags: [<craft>, feature-tracker]
 ### On Completing a Component
 
 1. Update the component's checkbox to `[x]`
-2. Update the feature's `updated` date
+2. Update the feature's `updated` timestamp
 3. Check: are ALL integration points for this feature wired?
    - If not, flag what's missing: "Component X is built but not integrated with Y"
 4. Do NOT change feature status to Done yet

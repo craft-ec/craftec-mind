@@ -4,7 +4,7 @@ description: Verify component connections and end-to-end flows. Stops premature 
 user-invocable: true
 trigger: Auto when declaring a component or feature "done"; "check integration", "does this actually work end to end"
 layer: discipline
-allowed-tools: Read, Grep, Glob, Bash
+allowed-tools: Read, Grep, Glob, Bash, Write, Edit
 ---
 
 # integration-check — End-to-End Integration Verification
@@ -103,8 +103,38 @@ For feature-level checks, trace the COMPLETE user flow:
 
 Identify any gaps in the chain.
 
+### Step 9: Record the Check (MANDATORY)
+
+**Every integration check MUST be recorded** to `.claude/integration-checks/` as a per-session file.
+
+**File naming**: `.claude/integration-checks/<YYYY-MM-DDTHHMMSS>Z.md`
+
+**Format**:
+
+```markdown
+---
+type: integration-check
+timestamp: 2026-02-21T18:30:00Z
+components: [<component-1>, <component-2>]
+verdict: PASS | FAIL
+tags: [integration-check, <craft>, <component>]
+---
+
+# Integration Check: <YYYY-MM-DDTHH:MM:SSZ>
+
+**Context**: <what triggered this check>
+
+## <component>
+<the full report from Steps 2-8>
+```
+
+### Step 10: Extract TODOs
+
+After recording, extract all **FAIL** items and broken data flows to `.claude/todos.md` using the `todo-track` format with source link `[[integration-checks/<filename>]]`.
+
 ## Integration
 
 - **feature-track**: Blocks Done status if integration check fails
 - **audit**: Includes integration checks in audit scope
 - **verify**: Compilation success ≠ integration success; this skill checks what verify cannot
+- **todo-track**: Receives failed integration points as action items

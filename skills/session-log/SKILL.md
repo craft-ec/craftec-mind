@@ -4,7 +4,7 @@ description: Session documentation and archival for cross-session continuity. Lo
 user-invocable: true
 trigger: "log this", "save session"; auto on handover or end of significant work
 layer: knowledge
-allowed-tools: Read, Write
+allowed-tools: Read, Write, Edit
 ---
 
 # session-log — Session Documentation
@@ -29,11 +29,11 @@ When the user says "log this", "save session", or when a significant unit of wor
 ---
 type: session
 craft: <craft-name or "multi">
-created: <today's date>
+created: <ISO 8601 timestamp>
 tags: [session, <craft>]
 ---
 
-## <date> <time> — <One-line Summary>
+## <ISO 8601 timestamp> — <One-line Summary>
 **What**: <concise description of what was done>
 **Changed**:
 - <file/crate 1>: <what changed>
@@ -75,9 +75,14 @@ When explicitly ending a work session or handing over to another agent:
 4. **Link related artifacts** — wikilinks to features, debug logs, patterns
 5. **One entry per logical unit** — not one per file change; one per meaningful work block
 
+### Extracting TODOs
+
+If the **Next** section contains items that should be tracked beyond the current session, add them to `.claude/todos.md` using the `todo-track` format with source `[[session-log/current]]`.
+
 ## Integration
 
 - **context-load**: Reads the last 3 entries for session continuity
 - **commit-guard**: session-log chains into commit-guard to persist entries
 - **feature-track**: Session entries reference feature progress
 - **debug-log**: Session entries link to active investigations
+- **todo-track**: Receives "Next" items that need cross-session tracking

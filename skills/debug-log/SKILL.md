@@ -4,7 +4,7 @@ description: Structured investigation protocol with file-based log trail. Stops 
 user-invocable: true
 trigger: Auto when any error/failure is encountered; "debug this", "investigate", "why is this failing"
 layer: discipline
-allowed-tools: Read, Grep, Glob, Bash, Write
+allowed-tools: Read, Grep, Glob, Bash, Write, Edit
 ---
 
 # debug-log — Structured Investigation Protocol
@@ -26,8 +26,8 @@ craft: <craft-name>
 component: <component-name>
 type: debug-log
 status: investigating
-created: <today's date>
-updated: <today's date>
+created: <ISO 8601 timestamp>
+updated: <ISO 8601 timestamp>
 tags: [bug, <craft>, <component>]
 related: []
 ---
@@ -87,8 +87,12 @@ The fix MUST:
 
 After fixing:
 - Update the debug log `status` field to `resolved`
-- Update the `updated` date
+- Update the `updated` timestamp
 - Add the fix details to the Fix section
+
+### Step 7: Extract TODOs
+
+If the root cause reveals issues that can't be fixed immediately, add them to `.claude/todos.md` using the `todo-track` format with source link `[[debug-log/<investigation-name>]]`.
 
 ## Cross-Session Value
 
@@ -107,3 +111,4 @@ Debug logs persist on disk. When a similar error occurs in a future session:
 - **verify** skill: Falls back to debug-log protocol after 2 failed auto-fix retries
 - **audit** skill: Uses debug-log for persistent failures during batch fixes
 - **feature-track**: Debug logs can be linked from feature blockers
+- **todo-track**: Receives deferred fixes from investigations that identify issues beyond current scope

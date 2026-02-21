@@ -58,6 +58,18 @@ Load these sources, extracting only relevant sections:
 - Any open (non-resolved) investigations for this craft
 - Just the title + status, not full investigation details
 
+#### TODOs (`.claude/todos.md`)
+- Open items for this craft (grep for craft name in backticks)
+- Count by priority level
+
+#### Design Reviews (`.claude/design-reviews/`)
+- Most recent review file mentioning this craft
+- Just the verdict + any open dispositions (FIX NEEDED / SPEC UPDATE NEEDED)
+
+#### Integration Checks (`.claude/integration-checks/`)
+- Most recent check involving this craft
+- Just the verdict — PASS or FAIL with specific broken points
+
 ### Step 3: Hybrid Search for Patterns
 
 Search `.claude/patterns/` for this craft:
@@ -81,6 +93,9 @@ Format the extracted context as a concise briefing:
 ### Open Issues
 <from debug logs — any active investigations>
 
+### Open TODOs
+<from todos.md — open items for this craft, count by priority>
+
 ### Recent Work
 <from session log — last session's summary>
 
@@ -102,3 +117,5 @@ Format the extracted context as a concise briefing:
 - **feature-track**: context-load reads feature status for session briefing
 - **session-log**: context-load reads recent entries for continuity
 - **debug-log**: context-load surfaces open investigations
+- **todo-track**: context-load reads open TODOs to inform session priorities
+- **integration-check**: context-load reads latest check results for this craft
